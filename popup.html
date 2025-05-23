@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Link Guard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: 'Inter', sans-serif;
+        background-color: #1e1e2f;
+        color: #ffffff;
+        width: 380px;
+        display: flex;
+        flex-direction: column;
+        height: 600px;
+      }
+
+      header {
+        position: sticky;
+        top: 0;
+        background-color: #111827;
+        padding: 12px 16px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 10;
+        border-bottom: 1px solid #2d2d3a;
+      }
+
+      header span {
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .switch-container {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .switch-label {
+        font-size: 14px;
+      }
+
+      #toggleHighlight {
+        width: 40px;
+        height: 20px;
+        appearance: none;
+        background: #555;
+        border-radius: 10px;
+        position: relative;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      #toggleHighlight:checked {
+        background: #10b981;
+      }
+
+      #toggleHighlight::before {
+        content: "";
+        position: absolute;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: white;
+        top: 1px;
+        left: 1px;
+        transition: transform 0.3s;
+      }
+
+      #toggleHighlight:checked::before {
+        transform: translateX(20px);
+      }
+
+      main {
+        flex-grow: 1;
+        overflow-y: auto;
+        padding: 16px;
+        background-color: #1e1e2f;
+      }
+
+      #blockedTable table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+      }
+
+      th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #333;
+        font-size: 14px;
+        word-wrap: break-word;
+        max-width: 200px;
+      }
+
+      th {
+        color: #9ca3af;
+        font-weight: 600;
+        font-size: 13px;
+        text-transform: uppercase;
+      }
+
+      tr:hover {
+        background-color: #2a2a40;
+        cursor: pointer;
+      }
+
+      #detailInfoDisplay {
+        display: none;
+      }
+
+      .back-button {
+        background-color: #2563eb;
+        color: white;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        margin-bottom: 12px;
+      }
+
+      #linkDetail {
+        background-color: #2a2a40;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 14px;
+        word-wrap: break-word;
+      }
+
+      footer {
+        background-color: #111827;
+        padding: 8px 16px;
+        font-size: 12px;
+        color: #9ca3af;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-top: 1px solid #2d2d3a;
+      }
+
+      footer a {
+        color: #3b82f6;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+
+  <body>
+    <header>
+      <img
+          src="icon.png"
+          alt="Phish Sense Logo"
+          width="50"
+          height="50"
+          style="padding: 5px"
+        />
+      <span>Phish Sense</span>
+      <div class="switch-container">
+        <span class="switch-label">Scan</span>
+        <input type="checkbox" id="toggleHighlight" />
+      </div>
+    </header>
+
+    <main>
+      <div id="blockedTable">
+        <h2>Blocked Links</h2>
+        <table id="linksTable">
+          <thead>
+            <tr>
+              <th>Link</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- JS will populate rows here -->
+          </tbody>
+        </table>
+      </div>
+
+      <div id="detailInfoDisplay">
+        <button class="back-button" id="backToTable">&lt; Back</button>
+        <div id="linkDetail"></div>
+      </div>
+    </main>
+
+    <footer>
+      <span>v1.0.0</span>
+      <a href="https://github.com/your-repo" target="_blank">GitHub</a>
+    </footer>
+
+    <script src="popup.js"></script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "Link Highlighter",
+  "description": "Toggle and highlight links on hover",
+  "version": "1.0",
+  "permissions": [
+    "storage",
+    "scripting",
+    "activeTab"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "all_frames": true
+    }
+  ]
+}
